@@ -14,7 +14,7 @@ export default function Contact() {
     address: "Versalles 49, Piso 2, Col. Juárez, Alcaldía Cuauhtémoc Ciudad de México, C.P 06600",
     email: "atnjugadores@segob.gob.mx",
     mobile: "900 123 456",
-    website: "https://ayuda-ludopatia-drcv.vercel.app/",
+    website: "luchavsludopatia.vercel.app",
     hours: "Lunes a Viernes: 9:00 - 20:00",
   }
 
