@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -134,6 +134,24 @@ export default function RecursosReferencias() {
     },
   ]
 
+  useEffect(() => {
+    const handleResize = () => {
+      // Asegurarse de que las pestañas sean visibles en pantallas pequeñas
+      const isMobile = window.innerWidth < 768
+      if (isMobile) {
+        // Opcional: ajustar cualquier comportamiento específico para móviles
+      }
+    }
+
+    // Ejecutar al montar y cuando cambie el tamaño de la ventana
+    handleResize()
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
       <div className="flex justify-between items-center mb-6">
@@ -155,18 +173,18 @@ export default function RecursosReferencias() {
       <Card className="mb-8 border-0 shadow-sm overflow-hidden">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="bg-[#bf6671]/20 p-1">
-            <TabsList className="bg-transparent w-full flex justify-start h-auto p-0 gap-1">
+            <TabsList className="bg-transparent w-full flex flex-wrap justify-start h-auto p-0 gap-1">
               <TabsTrigger
                 value="estudios"
-                className={`rounded-t-lg rounded-b-none px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-none ${
+                className={`rounded-t-lg rounded-b-none px-3 py-2 text-sm md:text-base data-[state=active]:bg-white data-[state=active]:shadow-none ${
                   activeTab === "estudios" ? "bg-white" : "bg-[#bf6671]"
                 }`}
               >
-                Estudios e Investigaciones
+                Estudios
               </TabsTrigger>
               <TabsTrigger
                 value="ligas"
-                className={`rounded-t-lg rounded-b-none px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-none ${
+                className={`rounded-t-lg rounded-b-none px-3 py-2 text-sm md:text-base data-[state=active]:bg-white data-[state=active]:shadow-none ${
                   activeTab === "ligas" ? "bg-white" : "bg-[#bf6671]"
                 }`}
               >
@@ -174,11 +192,11 @@ export default function RecursosReferencias() {
               </TabsTrigger>
               <TabsTrigger
                 value="referencias"
-                className={`rounded-t-lg rounded-b-none px-4 py-2 data-[state=active]:bg-white data-[state=active]:shadow-none ${
+                className={`rounded-t-lg rounded-b-none px-3 py-2 text-sm md:text-base data-[state=active]:bg-white data-[state=active]:shadow-none ${
                   activeTab === "referencias" ? "bg-white" : "bg-[#bf6671]"
                 }`}
               >
-                Referencias APA
+                Referencias
               </TabsTrigger>
             </TabsList>
           </div>
@@ -432,3 +450,4 @@ export default function RecursosReferencias() {
     </motion.div>
   )
 }
+
